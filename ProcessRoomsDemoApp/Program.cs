@@ -1,3 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using ProcessRoomsDemoApp;
+using ProcessRoomsDemoApp.Tasks;
 
-Console.WriteLine("Hello, World!");
+var host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder()
+    .ConfigureServices((_, collection) => ServiceCollection.AddServices(collection))
+    .Build();
+
+host.Services.GetRequiredService<IServerTaskWorker>();
